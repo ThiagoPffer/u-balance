@@ -1,4 +1,4 @@
-# first-vue-project
+# Projeto desenvolvido para praticar conceitos de VueJS e Firebase. Inspirado em um projeto chamado "devFinances", desenvolvido em uma maratona de programação organizada pela RocketSeat.
 
 ## Project setup
 ```
