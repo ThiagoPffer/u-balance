@@ -135,9 +135,16 @@ export default {
     .default-input {
         color: var(--black);
         padding: 10px 15px;
-        border: 1px solid var(--black);
+        border: 1px solid var(--primary);
         border-radius: 4px;
+        box-shadow: transparent 0 5px 10px;
         width: 100%;
+        transition: .3s ease-out;
+    }
+
+    .default-input:focus {
+        border: 1px solid transparent;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 5px 10px;
     }
 
     .default-button {

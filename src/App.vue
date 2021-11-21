@@ -1,15 +1,19 @@
 <template>
   <div class="background d-flex gap-vertical">
-    <h2>OpenFinances</h2>
-    <div class="row-container justify-center">
+    <header class="row-container">
+      <h2 class="logo"><span>u</span>Balance</h2>
+    </header>
+    <div class="row-container justify-end">
       <default-button @click="showModal(true)"></default-button>
     </div>
-    <div class="row-container justify-space-between">
-      <default-card></default-card>
-      <default-card></default-card>
-      <default-card></default-card>
+    <div class="row-container">
+      <div class="column-container">
+        <default-card></default-card>
+        <default-card></default-card>
+        <default-card></default-card>
+      </div>
+      <default-table class="teste"></default-table>
     </div>
-    <default-table class="teste"></default-table>
     <add-finance-modal v-if="isModalOpen" @close="showModal(false)"></add-finance-modal>
   </div>
 </template>
@@ -49,6 +53,10 @@
 </script>
 
 <style>
+  header {
+    padding: 45px 25px;
+  }
+
   #app {
     display: flex;
     flex-direction: column;
@@ -56,7 +64,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
     padding: 50px 0;
+    color: var(--black);
+  }
+
+  .logo {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 2rem;
+  }
+  .logo span {
+    font-weight: 300;
   }
 </style>

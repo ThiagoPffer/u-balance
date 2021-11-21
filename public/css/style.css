@@ -11,14 +11,11 @@
     margin: 0;
     font-family: 'Poppins', Helvetica, Arial, sans-serif;
     box-sizing: border-box;
+    outline: none;
 }
 
 body {
-    background-color: var(--primary);
-}
-
-h1, h2, h3 {
-    font-weight: 500;
+    background-color: #fff
 }
 
 button {
@@ -62,12 +59,25 @@ table tr td{
     flex-direction: row;
 }
 
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .align-center {
     align-items: center;
 }
 
+.align-space-between {
+    align-content: space-between;
+}
+
 .justify-space-between {
     justify-content: space-between;
+}
+
+.justify-end {
+    justify-content: flex-end;
 }
 
 .justify-center {
