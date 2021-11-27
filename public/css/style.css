@@ -4,6 +4,8 @@
     --primary-dark: #037C5F;
     --black: #323232;
     --red: #9B1B1B;
+    --gray: #AEAEAE;
+    --gray-lighter: #F6F6F6;
 }
 
 * {

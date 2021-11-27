@@ -9,22 +9,22 @@
                 <div class="modal-body">
                     <div class="input-group">
                         <label class="default-label" for="input-descricao">Descrição</label>
-                        <input class="default-input" type="text" id="input-descricao" placeholder="Descreva a movimentação">
+                        <input v-model="finantialMovement.description" class="default-input" type="text" id="input-descricao" placeholder="Descreva a movimentação">
                     </div>
                     <div class="row-container gap-horizontal--16">
                         <div class="input-group">
                             <label class="default-label" for="input-data">Data</label>
-                            <input class="default-input" type="date" id="input-data" placeholder="Data da movimentação">
+                            <input v-model="finantialMovement.date" class="default-input" type="date" id="input-data" placeholder="Data da movimentação">
                         </div>
                         <div class="input-group">
                             <label class="default-label" for="input-valor">Valor</label>
-                            <input class="default-input" type="number" id="input-valor" placeholder="Valor movimentado">
+                            <input v-model="finantialMovement.amount" class="default-input" type="number" id="input-valor" placeholder="Valor movimentado">
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="default-button" @click="$emit('close')">Salvar</button>
+                    <button class="default-button" @click="$emit('saveMovement', this.finantialMovement)">Salvar</button>
                     <button class="no-background-button" @click="$emit('close')">Cancelar</button>
                 </div>
             </div>
@@ -33,12 +33,27 @@
 </template>
 
 <script>
+// import _forEach from 'lodash/forEach';
+// import _isEmpty from 'lodash/isEmpty';
 export default {
     name: 'AddFinanceModal',
     data() {
         return {
-
+            finantialMovement: {}
         }
+    },
+    emits: ['saveMovement', 'close'],
+    methods: {
+        // validateData(data) {
+        //     _forEach(data, function(item) {
+        //         if(_isEmpty(item)) {
+        //             return true;
+        //         }
+        //         return false;
+        //     });
+        //     console.log(_isEmpty(data.description) && _isEmpty(data.date) && _isEmpty(data.amount))
+        //     return _isEmpty(data.description) && _isEmpty(data.date) && _isEmpty(data.amount);
+        // }
     }
 }
 </script>
@@ -54,7 +69,7 @@ export default {
         overflow: hidden;
         background-color: rgba(0, 0, 0, 0.5);
         animation-name: modal-mask-animation;
-        animation-duration: .4s;
+        animation-duration: .2s;
         display: table;
     }
 
@@ -85,7 +100,7 @@ export default {
 
     @keyframes modal-animation {
         from {
-            transform: scale(60%);
+            transform: scale(70%);
             opacity: 0;
         }
         to {
@@ -135,16 +150,16 @@ export default {
     .default-input {
         color: var(--black);
         padding: 10px 15px;
-        border: 1px solid var(--primary);
+        background: var(--gray-lighter);
+        border: 1px solid transparent;
         border-radius: 4px;
         box-shadow: transparent 0 5px 10px;
         width: 100%;
-        transition: .3s ease-out;
+        transition: box-shadow .3s ease-out;
     }
 
     .default-input:focus {
-        border: 1px solid transparent;
-        box-shadow: rgba(0, 0, 0, 0.1) 0 5px 10px;
+        box-shadow: rgba(0, 0, 0, 0.07) 0 5px 10px;
     }
 
     .default-button {

@@ -1,6 +1,6 @@
 <template>
     <div class="table-container">
-        <table>
+        <table v-if="transactionsList.length != 0">
             <tr>
                 <th>Valor</th>
                 <th>Descrição</th>
@@ -8,45 +8,38 @@
                 <th>Data</th>
                 <th></th>
             </tr>
-            <tr v-for="item in array" v-bind:key="item" title="Ver detalhes">
-                <td> {{item.valor}} </td>
-                <td> {{item.descricao}} </td>
-                <td> {{item.tipo}} </td>
-                <td> {{item.data}} </td>
+            <tr v-for="transaction in transactionsList" v-bind:key="transaction" title="Ver detalhes">
+                <td> {{transaction.amount}} </td>
+                <td> {{transaction.description}} </td>
+                <td> {{transaction.type}} </td>
+                <td> {{transaction.date}} </td>
                 <td>
                     <button class="button-table">Ver</button>
-                    <button @click="removerItem(item)" class="button-close" title="Excluir item"><span class="mdi mdi-close"></span></button> 
+                    <button @click="removerItem(transaction)" class="button-close" title="Excluir item"><span class="mdi mdi-close"></span></button> 
                 </td>
             </tr>
         </table>
-        <p v-if="array.length === 0">Não há nenhum item a ser exibido</p>
+        <p v-if="transactionsList.length === 0">Não há nenhum item a ser exibido</p>
     </div>
 </template>
 
 <script>
+    import _isEmpty from 'lodash/isEmpty';
     export default {
         name: 'DefaultTable',
+        props: {
+            transactionsListProps: Array
+        },
         data() {
-            var array = []
-            let i = 0;
-            while (i < 10) {
-                array.push({
-                    valor: '460,00',
-                    descricao: 'descrição',
-                    tipo: 'ENTRADA',
-                    data: Date.now(),
-                    id: i
-                });
-                i++;
-            }
             return {
-                array,
+                transactionsList: this.transactionsListProps
             };
         },
         methods: {
             removerItem(item) {
-                console.log(item);
-                this.array.splice(this.array.indexOf(item), 1);
+                if(!_isEmpty(this.transactionsList)) {
+                    this.transactionsList.splice(this.transactionsList.indexOf(item), 1);
+                }
             },
         }
     };
@@ -54,6 +47,9 @@
 
 <style scoped>
     .table-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: #fff;
         border-radius: 8px;
         min-width: 55rem;
@@ -64,6 +60,7 @@
     }
 
     .table-container table {
+        align-self: flex-start;
         border-collapse: collapse;
         width: 100%;
     }
